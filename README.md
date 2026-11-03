@@ -26,15 +26,15 @@ Open http://127.0.0.1:4173/. Rebuild after source changes and refresh the browse
 - `public/site.js`: mobile navigation, scroll reveals and moving-text controls.
 - `public/assets/`: curated WebP photography and the social preview.
 
-### Add contact details
+### Update contact details
 
-Set `email` and `linkedin` in the `profile` object in `src/content.mjs`. Use a full HTTPS profile URL for LinkedIn. The Contact page automatically renders each supplied link; while both are empty, it explains that details are coming soon.
+The supplied email and LinkedIn profile are populated in `src/content.mjs`; edit the `profile` object to update them. Use a full HTTPS profile URL for LinkedIn. The Contact page displays the email address and each supplied link; while both are empty, it explains that details are coming soon.
 
 ### Add or update work
 
-Edit the `projects` array in `src/content.mjs`. Each entry needs a unique lowercase `id`, number, category, title, short title, year, role, description, contributions and learning. For photography, add the optimised image to `public/assets/` and set its filename and descriptive alt text. Add explicit dimensions to the image helper when introducing a different asset size. Cards and work-page case studies use the same content.
+Edit the `projects` array in `src/content.mjs`. Each entry needs a unique lowercase `id`, number, category, title, short title, year, role, description, contributions, and either a `learning` paragraph or `reflection` pairs of label and text. For photography, add the optimised image to `public/assets/` and set its filename and descriptive alt text. Add explicit dimensions to the image helper when introducing a different asset size. Cards and work-page case studies use the same content.
 
-The Melissa visual is an editorial title treatment for the project, not a supplied campaign deliverable. Replace it with approved project photography when available. The WaterSource case study includes a local product film and an optional TikTok player. CP Foods links to the supplied Instagram post. Media markup is in `src/pages/work.mjs`; local video, poster and captions are in `public/media/`. The product film is encoded as H.264/AAC for browser compatibility, with no autoplay and no video preload. Its English caption track follows the text already present in the supplied film. The TikTok player can be expanded on demand and includes a direct-link fallback.
+The Melissa visual is a plain editorial title card visibly labelled “Project cover”, not a supplied campaign deliverable. Replace it with approved project photography when available. The WaterSource case study includes a local product film and an optional TikTok player. The CP co-branded T-shirt campaign links to the supplied Instagram post; its model contribution is separate from the TEP project dates. Media markup is in `src/pages/work.mjs`; local video, poster and captions are in `public/media/`. The product film is encoded as H.264/AAC for browser compatibility, with no autoplay and no video preload. Its English caption track follows the text already present in the supplied film. The TikTok player can be expanded on demand and includes a direct-link fallback.
 
 ### Photography and fonts
 

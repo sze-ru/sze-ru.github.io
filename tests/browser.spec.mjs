@@ -2,6 +2,17 @@ import { test, expect } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 
 const routes = ["/", "/about/", "/experience/", "/work/", "/contact/"];
+test("mobile hero portrait clears the introductory paragraph", async ({ page }) => {
+  for (const width of [320, 360, 375, 390, 430]) {
+    await page.setViewportSize({ width, height: 900 });
+    await page.goto("/");
+    await page.evaluate(() => document.fonts.ready);
+    const photo = await page.locator(".hero-photo").boundingBox();
+    const description = await page.locator(".hero-description").boundingBox();
+    expect(photo.y + photo.height, `${width}px portrait bottom`).toBeLessThanOrEqual(description.y);
+  }
+});
+
 test("contact icon links use the supplied email and LinkedIn destinations", async ({
   page,
 }) => {

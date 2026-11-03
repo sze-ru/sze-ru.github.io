@@ -35,12 +35,14 @@ export const eyebrow = (number, text) =>
   `<p class="eyebrow"><span class="section-number">${number}</span>${text}</p>`;
 
 export function socialLinks(showLabels = false) {
-  return `<div class="social-links${showLabels ? " social-links-labelled" : ""}">${profile.email ? `<a class="social-link" href="mailto:${escape(profile.email)}" aria-label="Email Jade at ${escape(profile.email)}" title="${escape(profile.email)}">${icons.email}${showLabels ? "<span>Email</span>" : ""}</a>` : ""}${profile.linkedin ? `<a class="social-link" href="${escape(profile.linkedin)}" target="_blank" rel="noopener noreferrer" aria-label="Jade on LinkedIn (opens in a new tab)" title="LinkedIn">${icons.linkedin}${showLabels ? "<span>LinkedIn</span>" : ""}</a>` : ""}</div>`;
+  return `<div class="social-links${showLabels ? " social-links-labelled" : ""}">${profile.email ? `<a class="social-link" href="mailto:${escape(profile.email)}" aria-label="Email Jade at ${escape(profile.email)}" title="${escape(profile.email)}">${icons.email}${showLabels ? `<span>${escape(profile.email)}</span>` : ""}</a>` : ""}${profile.linkedin ? `<a class="social-link" href="${escape(profile.linkedin)}" target="_blank" rel="noopener noreferrer" aria-label="Jade on LinkedIn (opens in a new tab)" title="LinkedIn">${icons.linkedin}${showLabels ? "<span>LinkedIn</span>" : ""}</a>` : ""}</div>`;
 }
+
+export const melissaCover = () => `<div class="editorial-cover"><span class="micro">Project cover / 2026</span><strong>Melissa Shoes</strong><p>Talent coordination<br>& content planning</p></div>`;
 
 export function projectCard(project) {
   return `<a class="project-card ${project.className}" href="/work/#${project.id}">
-    <div class="project-visual">${project.image ? image(project.image, project.alt) : '<div class="melissa-art" aria-hidden="true"><span>Creative connections.</span><strong>melissa<span>↗</span></strong><small>PEOPLE / IDEAS / EXPRESSION</small></div>'}<span class="project-open" aria-hidden="true">↗</span><span class="project-index">${project.number}</span></div>
+    <div class="project-visual">${project.image ? image(project.image, project.alt) : melissaCover()}<span class="project-open" aria-hidden="true">↗</span><span class="project-index">${project.number}</span></div>
     <div class="project-info"><p class="micro">${project.category}</p><h3>${project.shortTitle}</h3><span class="project-year">${project.year}</span></div>
   </a>`;
 }

@@ -11,10 +11,10 @@ export const projects = [
     id: "hospitality",
     number: "01",
     category: "Hospitality / Guest experience",
-    title: "The art of making<br>people feel welcome.",
+    title: "VIP hospitality<br>& guest experience.",
     shortTitle: "VIP hospitality",
     image: "jade-nightlife.webp",
-    alt: "Jade in a black evening outfit at a Singapore nightlife venue",
+    alt: "Portrait of Jade in a black evening outfit beside a waterfront railing",
     year: "2023 — Present",
     className: "hospitality",
     description:
@@ -32,7 +32,7 @@ export const projects = [
     id: "eldex",
     number: "02",
     category: "Content production / Events",
-    title: "From the idea<br>to the event floor.",
+    title: "WaterSource Evergreen<br>× ELDEX Asia 2026.",
     shortTitle: "WaterSource Evergreen × ELDEX",
     image: "eldex-filming.webp",
     alt: "Jade filming an interview on the ELDEX exhibition floor",
@@ -46,14 +46,17 @@ export const projects = [
       "Helped with event setup and filmed across the three-day ELDEX event.",
       "Worked through feedback and editing revisions to refine product content and event highlights.",
     ],
-    learning:
-      "An idea gets stronger when you listen. Client feedback taught me to think beyond what looks exciting and consider what the brand actually needs to communicate.",
+    reflection: [
+      ["Challenge", "Our initial ELDEX ideas felt exciting, but client feedback challenged whether they suited the brand. During the event, crowds and booth activities changed our filming schedule; a difficult customer interaction also tested my composure."],
+      ["How I responded", "I listened to the client’s perspective, worked through repeated video revisions and adjusted filming around what was happening on the floor. At the booth, I stayed calm and handled the interaction professionally."],
+      ["What I’ll carry forward", "Before pushing an idea forward, I want to check what it communicates for the brand. I’ll make room for feedback and keep filming plans flexible enough for a live event."],
+    ],
   },
   {
     id: "melissa",
     number: "03",
     category: "Creative marketing / Talent coordination",
-    title: "Connecting people<br>with a creative idea.",
+    title: "Melissa Shoes.",
     shortTitle: "Melissa Shoes",
     image: null,
     year: "2026",
@@ -66,8 +69,11 @@ export const projects = [
       "Researched content ideas and developed presentation slides aligned with the brand and its audience.",
       "Analysed Instagram and TikTok posts and Reels performance to better understand audience response.",
     ],
-    learning:
-      "Creative work depends on the details: a clear brief, the right people and thoughtful follow-through. Bringing those pieces together is a part of the process I enjoy.",
+    reflection: [
+      ["Challenge", "Melissa’s talent outreach and content deck ran alongside WaterSource edits and DBM filming. Keeping several deliverables moving challenged my time management."],
+      ["How I responded", "I broke down tasks and prioritised what needed completing first. I gathered talent information and reference material, coordinated with teammates and consolidated our research into slides within the deadline."],
+      ["What I’ll carry forward", "I want to prioritise deadlines more deliberately and make sure teammates have the information they need. Organisation is part of the creative work, especially when several projects overlap."],
+    ],
   },
 ];
 
