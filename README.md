@@ -23,7 +23,7 @@ Open http://127.0.0.1:4173/. Rebuild after source changes and refresh the browse
 - `src/pages/`: page introductions, About text, experience sections and page composition.
 - `src/layout.mjs`: shared navigation, footer, metadata and project card markup.
 - `public/styles.css`: responsive layout, colours, typography and motion.
-- `public/site.js`: mobile navigation, scroll reveals and moving-text controls.
+- `public/site.js`: mobile navigation and scroll reveals.
 - `public/assets/`: curated WebP photography and the social preview.
 
 ### Update contact details

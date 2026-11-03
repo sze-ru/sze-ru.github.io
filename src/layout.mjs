@@ -38,7 +38,7 @@ export function socialLinks(showLabels = false) {
   return `<div class="social-links${showLabels ? " social-links-labelled" : ""}">${profile.email ? `<a class="social-link" href="mailto:${escape(profile.email)}" aria-label="Email Jade at ${escape(profile.email)}" title="${escape(profile.email)}">${icons.email}${showLabels ? `<span>${escape(profile.email)}</span>` : ""}</a>` : ""}${profile.linkedin ? `<a class="social-link" href="${escape(profile.linkedin)}" target="_blank" rel="noopener noreferrer" aria-label="Jade on LinkedIn (opens in a new tab)" title="LinkedIn">${icons.linkedin}${showLabels ? "<span>LinkedIn</span>" : ""}</a>` : ""}</div>`;
 }
 
-export const melissaCover = () => `<div class="editorial-cover"><span class="micro">Project cover / 2026</span><strong>Melissa Shoes</strong><p>Talent coordination<br>& content planning</p></div>`;
+export const melissaCover = () => `<div class="editorial-cover"><span class="micro">Project cover / 2026</span><strong>melissa</strong><p>Talent coordination<br>& content planning</p></div>`;
 
 export function projectCard(project) {
   return `<a class="project-card ${project.className}" href="/work/#${project.id}">

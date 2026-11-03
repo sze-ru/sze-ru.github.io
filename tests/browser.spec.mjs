@@ -144,25 +144,9 @@ test("project cards navigate to real case studies", async ({ page }) => {
   await expect(page.locator("#eldex h2")).toBeInViewport();
 });
 
-test("moving text can be paused and reduced motion suppresses animation", async ({
-  page,
-}) => {
+test("reduced motion keeps revealed content visible", async ({ page }) => {
   await page.goto("/");
-  await page.getByRole("button", { name: "Pause moving text" }).click();
-  await expect(
-    page.getByRole("button", { name: "Resume moving text" }),
-  ).toHaveAttribute("aria-pressed", "true");
-  expect(
-    await page
-      .locator(".ticker-track")
-      .evaluate((el) => getComputedStyle(el).animationPlayState),
-  ).toBe("paused");
   await page.emulateMedia({ reducedMotion: "reduce" });
-  expect(
-    await page
-      .locator(".ticker-track")
-      .evaluate((el) => getComputedStyle(el).animationName),
-  ).toBe("none");
   expect(
     await page
       .locator("[data-reveal]")
@@ -181,14 +165,6 @@ test("content and navigation remain usable without JavaScript", async ({
   });
   const page = await context.newPage();
   await page.goto("http://127.0.0.1:4173/");
-  expect(
-    await page
-      .locator(".ticker-track")
-      .evaluate((el) => getComputedStyle(el).animationName),
-  ).toBe("none");
-  await expect(
-    page.getByRole("button", { name: "Pause moving text" }),
-  ).not.toBeVisible();
   await expect(
     page.getByRole("navigation", { name: "Main navigation" }),
   ).toBeVisible();
