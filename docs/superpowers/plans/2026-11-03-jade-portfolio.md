@@ -41,5 +41,9 @@ Files: `scripts/publish.mjs`, `tests/publish.test.mjs`, `docs/deployment/pages-w
 
 - [x] Document content editing and the pending contact/video assets.
 - [x] Configure branch publication of only `dist`; preserve Actions as an optional workflow. Validate publishing and history preservation against a local bare Git repository.
-- [ ] Commit verified source, create `sze-ru/sze-ru.github.io`, enable Pages and push.
-- [ ] Verify deployment and the live homepage; provide the site and repository URLs.
+- [x] Commit verified source, create `sze-ru/sze-ru.github.io`, enable Pages and push.
+- [x] Verify deployment and the live homepage; provide the site and repository URLs.
+
+## Verification result
+
+Four Node checks and seven Chromium browser checks pass. The reviewer confirmed the publisher preserves branch history and source state. GitHub Pages deployment run 41602512641 succeeded, and all five live pages plus the social sharing image returned HTTP 200 with the expected portfolio content.
