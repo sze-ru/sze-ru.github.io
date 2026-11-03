@@ -28,20 +28,6 @@ navigation.addEventListener("click", (event) => {
 matchMedia("(min-width:761px)").addEventListener("change", closeMenu);
 
 const motionPreference = matchMedia("(prefers-reduced-motion: reduce)");
-const ticker = document.querySelector(".ticker");
-const tickerToggle = document.querySelector(".ticker-toggle");
-if (tickerToggle) {
-  tickerToggle.addEventListener("click", () => {
-    const paused = ticker.classList.toggle("paused");
-    tickerToggle.setAttribute("aria-pressed", String(paused));
-    tickerToggle.setAttribute(
-      "aria-label",
-      paused ? "Resume moving text" : "Pause moving text",
-    );
-    tickerToggle.querySelector("span").textContent = paused ? "▷" : "Ⅱ";
-  });
-}
-
 if (!motionPreference.matches && "IntersectionObserver" in window) {
   const observer = new IntersectionObserver(
     (entries) => {
