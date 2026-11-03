@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://sze-ru.github.io/sitemap.xml
