@@ -16,7 +16,7 @@ A dependency-free Node build produces static HTML from shared layout, editable c
 
 ## Hosting and handover
 
-Create public repository `sze-ru/sze-ru.github.io` and configure GitHub Pages via Actions. Deploy only `dist`, never the original attachments, research or assignment documents. Source ownership remains with sze-ru. Document content editing, build, preview and deployment. The first pass uses the default GitHub domain; a custom domain can be configured when supplied.
+Create public repository `sze-ru/sze-ru.github.io` and configure GitHub Pages. The first pass publishes `dist` to the `gh-pages` branch because the available GitHub OAuth sign-in cannot upload workflow files. Keep an optional Actions configuration in `docs/deployment/` for later activation. Deploy only `dist`, never the original attachments, research or assignment documents. Source ownership remains with sze-ru. Document content editing, build, preview and deployment. The first pass uses the default GitHub domain; a custom domain can be configured when supplied.
 
 ## Verification
 

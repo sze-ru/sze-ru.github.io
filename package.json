@@ -1,0 +1,20 @@
+{
+  "name": "jade-ong-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "test": "node --test tests/site.test.mjs tests/publish.test.mjs",
+    "deploy": "npm run build && npm test && node scripts/publish.mjs",
+    "test:browser": "playwright test",
+    "preview": "python3 -m http.server 4173 --directory dist --bind 127.0.0.1"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.14.0",
+    "@playwright/test": "^1.64.1"
+  }
+}
