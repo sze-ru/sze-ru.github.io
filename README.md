@@ -34,7 +34,7 @@ Set `email` and `linkedin` in the `profile` object in `src/content.mjs`. Use a f
 
 Edit the `projects` array in `src/content.mjs`. Each entry needs a unique lowercase `id`, number, category, title, short title, year, role, description, contributions and learning. For photography, add the optimised image to `public/assets/` and set its filename and descriptive alt text. Add explicit dimensions to the image helper when introducing a different asset size. Cards and work-page case studies use the same content.
 
-The Melissa visual is an editorial title treatment for the project, not a supplied campaign deliverable. Replace it with approved project photography when available. Final video links can be added to the appropriate case study in `src/pages/work.mjs` once provided.
+The Melissa visual is an editorial title treatment for the project, not a supplied campaign deliverable. Replace it with approved project photography when available. The WaterSource case study includes a local product film and an optional TikTok player. CP Foods links to the supplied Instagram post. Media markup is in `src/pages/work.mjs`; local video, poster and captions are in `public/media/`. The product film is encoded as H.264/AAC for browser compatibility, with no autoplay and no video preload. Its English caption track follows the text already present in the supplied film. The TikTok player can be expanded on demand and includes a direct-link fallback.
 
 ### Photography and fonts
 
@@ -78,10 +78,9 @@ The site assumes the user-site root URL `https://sze-ru.github.io/`. If changing
 
 No contact backend, CMS subscription or analytics service is required. Content is edited in the repository and published using the deployment command above.
 
-## First-pass content still to supply
+## Optional content additions
 
-- Jade’s professional email and exact LinkedIn profile URL.
-- Approved final video URLs and any additional Melissa project media.
+- Additional approved Melissa project media, if available.
 - Optional higher-resolution portraits and a custom domain.
 
 The source repository and these instructions provide the handover. No ongoing maintenance or support agreement is implied by this first pass.

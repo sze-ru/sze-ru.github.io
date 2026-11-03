@@ -1,6 +1,14 @@
 import { profile } from "./content.mjs";
 
 export const arrow = '<span aria-hidden="true">↗</span>';
+export const icons = {
+  email:
+    '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 6 9 7 9-7"/></svg>',
+  linkedin:
+    '<svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true" focusable="false"><path d="M5.4 3a2.1 2.1 0 1 0 0 4.2 2.1 2.1 0 0 0 0-4.2ZM3.6 9h3.6v12H3.6V9Zm6 0H13v1.6h.1c.5-.9 1.6-1.9 3.5-1.9 3.7 0 4.4 2.4 4.4 5.5V21h-3.6v-6c0-1.4 0-3.2-2-3.2s-2.3 1.5-2.3 3.1V21H9.6V9Z"/></svg>',
+  instagram:
+    '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".75" fill="currentColor" stroke="none"/></svg>',
+};
 export const escape = (value) =>
   String(value).replace(
     /[&<>"']/g,
@@ -25,6 +33,10 @@ export const image = (name, alt) => {
 };
 export const eyebrow = (number, text) =>
   `<p class="eyebrow"><span class="section-number">${number}</span>${text}</p>`;
+
+export function socialLinks(showLabels = false) {
+  return `<div class="social-links${showLabels ? " social-links-labelled" : ""}">${profile.email ? `<a class="social-link" href="mailto:${escape(profile.email)}" aria-label="Email Jade at ${escape(profile.email)}" title="${escape(profile.email)}">${icons.email}${showLabels ? "<span>Email</span>" : ""}</a>` : ""}${profile.linkedin ? `<a class="social-link" href="${escape(profile.linkedin)}" target="_blank" rel="noopener noreferrer" aria-label="Jade on LinkedIn (opens in a new tab)" title="LinkedIn">${icons.linkedin}${showLabels ? "<span>LinkedIn</span>" : ""}</a>` : ""}</div>`;
+}
 
 export function projectCard(project) {
   return `<a class="project-card ${project.className}" href="/work/#${project.id}">
@@ -60,6 +72,6 @@ export function layout({
 </head><body class="${className}"><a class="skip-link" href="#main">Skip to content</a>
 <header class="header wrap"><a href="/" class="wordmark" aria-label="Jade Ong home">JADE ONG<span class="brand-dot" aria-hidden="true">.</span></a><button class="menu-toggle" aria-expanded="false" aria-controls="navigation">Menu <span aria-hidden="true">+</span></button><nav id="navigation" aria-label="Main navigation">${nav.map(([url, label]) => `<a href="${url}" ${path === url ? 'aria-current="page"' : ""}>${label}${label === "Contact" ? arrow : ""}</a>`).join("")}</nav></header>
 <main id="main">${body}</main>
-<footer class="footer wrap"><a class="wordmark" href="/">JADE ONG<span class="brand-dot">.</span></a><p>People first. Ideas into action.</p><div><span>© ${new Date().getUTCFullYear()} Jade Ong</span><a href="#main">Back to top ↑</a></div></footer>
+<footer class="footer wrap"><a class="wordmark" href="/">JADE ONG<span class="brand-dot">.</span></a><p>People first. Ideas into action.</p>${socialLinks()}<div><span>© ${new Date().getUTCFullYear()} Jade Ong</span><a href="#main">Back to top ↑</a></div></footer>
 </body></html>`;
 }

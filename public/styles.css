@@ -1094,6 +1094,111 @@ a:hover {
   margin-top: 40px;
   max-width: 500px;
 }
+.social-links,
+.footer > .social-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  width: auto;
+}
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  transition:
+    color 0.2s,
+    border-color 0.2s,
+    background 0.2s;
+}
+.social-link:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: #ec65580a;
+}
+.social-links-labelled .social-link {
+  border-radius: 40px;
+  gap: 12px;
+  padding: 12px 20px;
+  font-size: 13px;
+}
+.social-post-link {
+  gap: 12px;
+  margin-top: 20px;
+}
+.social-post-link > span {
+  font-size: 12px;
+}
+.project-film {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: start;
+  gap: 90px;
+  padding-top: 55px;
+  margin-top: 65px;
+  border-top: 1px solid var(--line);
+}
+.project-film figure {
+  max-width: 370px;
+  width: 100%;
+  margin-inline: auto;
+}
+.project-film video {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 9 / 16;
+  background: #0b0b0b;
+}
+.project-film figcaption {
+  color: var(--muted);
+  font-size: 11px;
+  margin-top: 12px;
+}
+.film-copy > h3 {
+  font-size: clamp(32px, 3.5vw, 50px);
+  margin-bottom: 25px;
+}
+.film-copy > p:not(.eyebrow) {
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+.social-embed {
+  max-width: 370px;
+  margin-top: 30px;
+}
+.social-embed summary {
+  cursor: pointer;
+  padding: 15px 0;
+  border-block: 1px solid var(--line);
+  font-size: 12px;
+}
+.social-embed summary:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+.social-embed iframe {
+  display: block;
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  border: 0;
+  margin-top: 20px;
+}
+.social-embed > p {
+  font-size: 11px;
+  margin-top: 12px;
+}
+@media (max-width: 760px) {
+  .project-film {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    margin-top: 40px;
+    padding-top: 35px;
+  }
+}
 .contact-links > a {
   display: flex;
   justify-content: space-between;
@@ -1776,7 +1881,7 @@ a:hover {
   }
   .contact-photo img {
     aspect-ratio: 5/4;
-    object-position: center 40%;
+    object-position: center top;
   }
   .contact-topics {
     grid-template-columns: 1fr;

@@ -2,8 +2,8 @@ export const profile = {
   name: "Jade Ong",
   tagline: "People first. Ideas into action.",
   url: "https://sze-ru.github.io",
-  email: "",
-  linkedin: "",
+  email: "szeruong@gmail.com",
+  linkedin: "https://www.linkedin.com/in/jade-o-7610bb433/",
 };
 
 export const projects = [
