@@ -1030,7 +1030,7 @@ a:hover {
 .venue-fallback summary { cursor: pointer; }
 .venue-fallback details p { margin-top: 12px; font-size: 13px; }
 .venue-directions { display: inline-block; margin-top: 12px; font-size: 12px; }
-.js-enabled .venue-fallback { display: none; }
+.js-enabled .venue-fallback { display: block; }
 .venue-atlas:has(.venue-map[data-state="error"]) .venue-fallback { display: block; }
 html:not(.js-enabled) .venue-map-frame,
 html:not(.js-enabled) .map-filters,
@@ -2062,15 +2062,10 @@ html:not(.js-enabled) .map-filters,
 .experience-categories, .interest-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; }
 .category-card { position: relative; display: block; aspect-ratio: 3 / 4; overflow: hidden; border: 1px solid var(--line); background: var(--surface); transition: transform 240ms ease, border-color 240ms ease; }
 .category-card:hover, .category-card:focus-visible { transform: scale(1.025); border-color: var(--accent); color: var(--white); }
-.category-card > img, .map-card-art { width: 100%; height: 100%; object-fit: cover; object-position: center 40%; }
+.category-card > img { width: 100%; height: 100%; object-fit: cover; object-position: center 40%; }
 .category-caption { position: absolute; inset: auto 0 0; padding: 70px 28px 28px; background: linear-gradient(transparent, #090909ed); }
 .category-caption h3 { font-size: clamp(23px, 2.8vw, 38px); }
 .category-caption > span { display: block; margin-top: 12px; font-size: 13px; color: var(--white); }
-.map-card-art { background: radial-gradient(ellipse at 50% 20%, #324240, #121a1b); }
-.map-card-art svg { width: 100%; height: 100%; stroke: #71827c; stroke-width: 2; }
-.map-card-art svg path:first-child { stroke: #172c33; }
-.map-card-art circle { fill: #d9ba78; stroke: #d9ba78; }
-.map-card-art .micro { position: absolute; top: 24px; left: 28px; color: var(--white); }
 .modal-open { overflow: hidden; }
 .category-modal { width: min(1120px, calc(100% - 32px)); max-height: calc(100dvh - 32px); padding: 0 32px 32px; border: 1px solid var(--line); background: var(--bg); color: var(--white); overscroll-behavior: contain; }
 .category-modal::backdrop { background: #080808d9; backdrop-filter: blur(7px); }
@@ -2192,25 +2187,14 @@ html:not(.js-enabled) .scene-map-slot,
 .personal-card-art { height: 100%; background: linear-gradient(155deg, #293c46, #242526 50%, #56382a); }
 .personal-card-art svg { height: 100%; width: 100%; stroke: #b3bbb9; stroke-width: 1.5; }
 .personal-card-art > .micro { position: absolute; top: 24px; left: 24px; right: 24px; color: var(--white); }
-.gallery-preview { position: absolute; inset: 0; }
-.gallery-preview img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; }
-.gallery-preview img:first-child { opacity: 1; }
-.js-enabled .gallery-preview img { animation: gallery-fade 15s linear infinite both; animation-delay: var(--fade-delay); }
-@keyframes gallery-fade { 0%, 40%, 100% { opacity: 0; } 6.667%, 33.333% { opacity: 1; } }
-.gallery-images { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; align-items: start; }
-.gallery-images img { width: 100%; height: auto; }
 html:not(.js-enabled) .personal-modal { display: block; position: static; width: min(1100px, calc(100% - 40px)); max-height: none; margin: 32px auto; padding: 32px; }
 html:not(.js-enabled) .personal-modal .modal-close { display: none; }
 @media (max-width: 760px) {
-  .intro-layout, .personal-grid, .gallery-images { grid-template-columns: 1fr; }
+  .intro-layout, .personal-grid { grid-template-columns: 1fr; }
   .intro-portrait { width: min(100%, 420px); margin-inline: auto; }
   .personal-grid { gap: 40px; }
 }
-@media (prefers-reduced-motion: reduce) {
-  .js-enabled .gallery-preview img { animation: none; }
-  .gallery-preview img { opacity: 0; }
-  .gallery-preview img:first-child { opacity: 1; }
-}
+
 
 /* TEP is a readable chapter with project evidence and a learning timeline. */
 .tep-section { border-top: 1px solid var(--line); }
@@ -2247,3 +2231,60 @@ html:not(.js-enabled) .personal-modal .modal-close { display: none; }
 
 #dialog-tep .tep-section { border-top: 0; padding-top: 12px; }
 #dialog-tep .section-heading { padding-right: 40px; }
+
+/* The card shows the actual venue map; opening it reveals the interactive map. */
+.nightlife-card { display: grid; grid-template-rows: minmax(0, 1fr) auto; }
+.nightlife-card > .map-preview { min-height: 0; object-fit: contain; background: #101312; }
+.nightlife-card .category-caption { position: static; padding: clamp(16px, 2.2vw, 28px); background: var(--surface); }
+
+/* Equal-height photographs move right in two identical groups for a seamless loop. */
+.gallery-viewport { --gallery-height: clamp(220px, 50vh, 460px); overflow-x: auto; overflow-y: hidden; max-width: 100%; }
+.gallery-track, .gallery-group { display: flex; width: max-content; }
+.gallery-group { flex-shrink: 0; gap: 16px; padding-right: 16px; }
+.gallery-group figure { flex: none; margin: 0; }
+.gallery-group img { display: block; height: var(--gallery-height); width: auto; max-width: none; object-fit: contain; }
+.gallery-group[aria-hidden] { display: none; }
+.js-enabled .gallery-group[aria-hidden] { display: flex; }
+.js-enabled .gallery-track { animation: gallery-drift 160s linear infinite; }
+@keyframes gallery-drift { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+.gallery-preview { position: absolute; inset: 0; --gallery-height: 100%; overflow: hidden; }
+.gallery-preview .gallery-track, .gallery-preview .gallery-group, .gallery-preview figure { height: 100%; }
+.gallery-preview img { height: 100%; }
+.gallery-viewport:hover .gallery-track, .gallery-viewport:focus-within .gallery-track,
+#dialog-gallery:not([open]) .gallery-track { animation-play-state: paused; }
+@media (prefers-reduced-motion: reduce) {
+  .js-enabled .gallery-track { animation: none; }
+  .js-enabled .gallery-group[aria-hidden] { display: none; }
+}
+
+/* Shared experience records: readable with or without the map and JavaScript. */
+.additional-experience { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px; max-width: 1100px; margin: 48px auto 0; }
+.additional-experience > section { min-width: 0; }
+.additional-experience h3, .experience-directory h3 { font-size: clamp(25px, 3vw, 34px); margin-bottom: 12px; }
+.experience-directory { border-top: 1px solid var(--line); }
+.experience-directory > section { margin-top: 32px; }
+.experience-directory h4 { margin-bottom: 16px; font-size: 20px; }
+.experience-entry { border-bottom: 1px solid var(--line); padding: 16px 0; }
+.experience-entry summary { display: flex; align-items: baseline; gap: 12px; cursor: pointer; list-style: none; }
+.experience-entry summary::-webkit-details-marker { display: none; }
+.experience-entry summary::before { content: '+'; color: var(--accent); flex-shrink: 0; }
+.experience-entry[open] > summary::before { content: '−'; }
+.experience-entry summary > span:first-child { overflow-wrap: anywhere; }
+.experience-date { margin-left: auto; color: var(--muted); font-size: 12px; white-space: nowrap; }
+.experience-entry-body { padding: 16px 0 4px 22px; }
+.experience-entry-body p { font-size: 14px; margin-top: 12px; }
+.experience-roles { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; padding: 0; margin: 0; }
+.experience-roles li { border: 1px solid var(--line); border-radius: 20px; padding: 4px 10px; font-size: 12px; }
+.experience-filter { margin-top: 24px; }
+.experience-filter label { display: block; margin-bottom: 8px; font-size: 14px; }
+.experience-filter select { max-width: 100%; min-height: 44px; padding: 10px 36px 10px 12px; color: var(--white); background: var(--surface); border: 1px solid var(--line); font: inherit; }
+.experience-count { margin-top: 8px; font-size: 12px; }
+.tep-timeline { border-left: 1px solid var(--accent); margin-left: 6px; }
+.tep-timeline li { position: relative; padding-left: 24px; }
+.tep-timeline li::before { content: ''; position: absolute; left: -5px; top: 35px; width: 9px; height: 9px; border-radius: 50%; background: var(--accent); }
+@media (max-width: 760px) {
+  .additional-experience { grid-template-columns: minmax(0, 1fr); gap: 32px; }
+  .experience-directory { padding: 20px 16px; }
+  .experience-entry summary { flex-wrap: wrap; gap: 8px; }
+  .experience-entry summary > span:first-child { flex: 1; min-width: 120px; }
+}

@@ -69,7 +69,7 @@ try {
 
   function populatePanel(index) {
     const { name, address, summary, year, category, role, coordinates } = venues[index];
-    const kind = category === "vip" ? "VIP hospitality" : category === "event" ? "Event" : "Selected venue";
+    const kind = category === "vip" ? "Long-term hospitality" : "Events & Ad-hoc";
     panel.dataset.category = category;
     panel.querySelector("h3").textContent = name;
     panel.querySelector(".venue-panel-meta").textContent = `${kind} / ${year}`;

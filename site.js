@@ -2,6 +2,25 @@ document.documentElement.classList.add("js-enabled");
 
 const navigationHeader = document.querySelector(".home .header");
 
+document.querySelectorAll('[data-experience-directory]').forEach(directory => {
+  const filter = directory.querySelector('select');
+  const entries = [...directory.querySelectorAll('[data-experience-roles]')];
+  const update = () => {
+    let visible = 0;
+    entries.forEach(entry => {
+      entry.hidden = !!filter.value && !JSON.parse(entry.dataset.experienceRoles).includes(filter.value);
+      if (!entry.hidden) visible++;
+    });
+    directory.querySelectorAll('[data-experience-group]').forEach(group => {
+      group.hidden = !group.querySelector('.experience-entry:not([hidden])');
+    });
+    directory.querySelector('.experience-count').textContent = `${visible} ${visible === 1 ? 'entry' : 'entries'}`;
+  };
+  directory.querySelector('.experience-filter').hidden = false;
+  filter.addEventListener('change', update);
+  update();
+});
+
 const heroContacts = document.querySelector(".hero-bottom .social-links");
 const closingContacts = document.querySelector("#connect .contact-links");
 if (heroContacts && closingContacts) {
