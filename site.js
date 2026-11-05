@@ -1,5 +1,7 @@
 document.documentElement.classList.add("js-enabled");
 
+const navigationHeader = document.querySelector(".home .header");
+
 const heroContacts = document.querySelector(".hero-bottom .social-links");
 const closingContacts = document.querySelector("#connect .contact-links");
 if (heroContacts && closingContacts) {
@@ -32,31 +34,13 @@ if (heroContacts && closingContacts) {
   updateContacts();
 }
 
-const gallery = document.querySelector(".experience-gallery");
-if (gallery) {
-  const slides = [...gallery.querySelectorAll(".experience-slide")];
-  const track = gallery.querySelector(".gallery-track");
-  let activeIndex = 0;
-  const selectSlide = () => {
-    slides.forEach((slide, index) => {
-      slide.inert = index !== activeIndex;
-      slide.setAttribute("aria-hidden", String(index !== activeIndex));
-    });
-    track.style.transform = `translateX(-${activeIndex * 100}%)`;
-    gallery.dataset.activeIndex = activeIndex;
-    gallery.querySelector(".gallery-position").textContent = `${activeIndex + 1} / ${slides.length} — ${slides[activeIndex].dataset.title}`;
-  };
-  gallery.querySelector(".gallery-next").addEventListener("click", () => {
-    activeIndex = (activeIndex + 1) % slides.length;
-    selectSlide();
-    gallery.dispatchEvent(new Event("galleryadvance"));
-  });
-  gallery.addEventListener("galleryreset", () => { activeIndex = 0; selectSlide(); });
-  gallery.querySelectorAll(".gallery-open").forEach(opener => {
+document.querySelectorAll("[data-dialog]").forEach(opener => {
     const modal = document.getElementById(opener.dataset.dialog);
     opener.addEventListener("click", event => {
       event.preventDefault();
       modal.showModal();
+      modal.scrollTop = 0;
+      modal.querySelector("#venue-map")?.dispatchEvent(new Event("scene-map-resize"));
       document.documentElement.classList.add("modal-open");
     });
     modal.querySelector(".modal-close").addEventListener("click", () => modal.close());
@@ -74,16 +58,10 @@ if (gallery) {
       modal.querySelectorAll("video").forEach(video => video.pause());
       modal.querySelectorAll("iframe").forEach(frame => { frame.src = frame.src; });
       modal.querySelectorAll("details").forEach(detail => { detail.open = false; });
-      document.documentElement.classList.remove("modal-open");
-      opener.focus({ preventScroll: true });
+      if (!document.querySelector("dialog[open]")) document.documentElement.classList.remove("modal-open");
     });
     modal.querySelectorAll('a[href^="/#"]').forEach(link => link.addEventListener("click", () => modal.close()));
   });
-  gallery.classList.add("gallery-ready");
-  selectSlide();
-  import("/scene-transition.js").catch(() => {}); // Static cards remain usable if the enhancement cannot load.
-}
-
 const venueMap = document.querySelector("#venue-map");
 if (venueMap) {
   const loadMap = () => import("/venue-map.js").catch(() => {
@@ -104,31 +82,11 @@ if (venueMap) {
 
 const motionPreference = matchMedia("(prefers-reduced-motion: reduce)");
 const photoLayers = [...document.querySelectorAll("[data-photo-layers]")];
-const portraitTrack = document.querySelector("[data-photo-scroll]");
-const portraitRow = portraitTrack?.querySelector(".intro-photo-row");
-const portraitStage = portraitTrack?.querySelector(".intro-stage");
 if (photoLayers.length) {
   let photoFramePending = false;
   const updatePhotoLayers = () => {
     photoFramePending = false;
-    if (portraitRow) {
-      // Match the reference composition, while keeping the full row on short screens.
-      const pinTop = Math.max(16, Math.min(innerHeight * 0.135, innerHeight - portraitStage.offsetHeight - 24));
-      portraitStage.style.setProperty("--intro-pin-top", `${pinTop}px`);
-      const stickyTop = parseFloat(getComputedStyle(portraitStage).top) || 0;
-      const distance = portraitTrack.offsetHeight - portraitStage.offsetHeight;
-      const elapsed = stickyTop - portraitTrack.getBoundingClientRect().top;
-      const progress = motionPreference.matches || distance <= 0 || elapsed <= 1 ? 0
-        : elapsed >= distance - 1 ? 1 : elapsed / distance;
-      // Reveal the clean backgrounds before the foregrounds change scale.
-      const zoom = Math.max(0, (progress - 0.04) / 0.96);
-      const eased = zoom * zoom * (3 - 2 * zoom);
-      portraitRow.style.setProperty("--portrait-original", String(Math.max(0, 1 - progress / 0.04)));
-      portraitRow.style.setProperty("--portrait-scale", String(1 + 0.08 * eased));
-      portraitRow.style.setProperty("--portrait-background-scale", String(1 - 0.03 * eased));
-    }
     for (const figure of photoLayers) {
-      if (portraitRow?.contains(figure)) continue;
       const { top, height } = figure.getBoundingClientRect();
       const progress = Math.max(-1, Math.min(1, (innerHeight / 2 - top - height / 2) / (innerHeight / 2 + height / 2)));
       figure.style.setProperty("--subject-y", `${motionPreference.matches ? 0 : progress * Math.min(12, height * 0.02)}px`);
@@ -230,6 +188,7 @@ if (heroVideo) {
     const { top, height } = hero.getBoundingClientRect();
     const progress = Math.min(1, Math.max(0, -top / (height * 0.85)));
     film.style.opacity = motionPreference.matches ? "1" : String(1 - progress);
+    navigationHeader?.style.setProperty("--header-opacity", progress === 1 ? "1" : "0");
     fadePending = false;
   };
   const scheduleHeroFade = () => {
@@ -239,6 +198,8 @@ if (heroVideo) {
   };
   window.addEventListener("scroll", scheduleHeroFade, { passive: true });
   window.addEventListener("resize", scheduleHeroFade);
+  window.addEventListener("load", scheduleHeroFade);
+  window.addEventListener("pageshow", scheduleHeroFade);
   motionPreference.addEventListener("change", scheduleHeroFade);
   updateHeroFade();
 }

@@ -32,7 +32,7 @@ try {
     style: "https://tiles.openfreemap.org/styles/dark",
     center: [103.852, 1.283],
     zoom: 12,
-    minZoom: 11,
+    minZoom: 9,
     maxZoom: 17,
     renderWorldCopies: false,
     maxBounds: [[103.6, 1.15], [104.1, 1.5]],
@@ -68,7 +68,7 @@ try {
   }
 
   function populatePanel(index) {
-    const { name, address, summary, year, category, role } = venues[index];
+    const { name, address, summary, year, category, role, coordinates } = venues[index];
     const kind = category === "vip" ? "VIP hospitality" : category === "event" ? "Event" : "Selected venue";
     panel.dataset.category = category;
     panel.querySelector("h3").textContent = name;
@@ -77,7 +77,7 @@ try {
     panel.querySelector(".venue-panel-role").textContent = role || "";
     panel.querySelector(".venue-panel-role").hidden = !role;
     panel.querySelector(".venue-panel-address").textContent = address;
-    panel.querySelector("a").href = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${name} ${address} Singapore`)}`;
+    panel.querySelector("a").href = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${coordinates[1]},${coordinates[0]}`)}`;
     panel.hidden = false;
   }
 
@@ -96,7 +96,8 @@ try {
   }
 
   function previewVenue(index, x, y) {
-    if (selected !== null || previewDismissed) return;
+    // On narrow maps, open details by click or Enter so previews cannot cover pins.
+    if (container.clientWidth < 500 || selected !== null || previewDismissed) return;
     clearTimeout(previewTimer);
     previewIndex = index;
     selectionTrigger = pins[index];
@@ -131,14 +132,9 @@ try {
   function arrangeOverview() {
     if (selected !== null) return;
     const placed = [];
-    // Reserve the clocks' exact locations before spacing the remaining markers.
+    // Space nearby events and venues so every marker remains clickable.
     markers.forEach((marker, index) => {
-      if (pins[index].hidden || venues[index].category !== "event") return;
-      offsetMarker(index, 0, 0);
-      placed.push({ ...map.project(marker.getLngLat()), category: "event" });
-    });
-    markers.forEach((marker, index) => {
-      if (pins[index].hidden || venues[index].category !== "venue") return;
+      if (pins[index].hidden || venues[index].category === "vip") return;
       const point = map.project(marker.getLngLat());
       const offsets = [];
       for (let x = -16; x <= 16; x++) {
@@ -163,8 +159,24 @@ try {
       for (const other of [...placed].sort((a, b) => b.y - a.y)) {
         if (Math.abs(point.x - other.x) < spacing && Math.abs(y - other.y) < spacing) y = other.y - spacing;
       }
-      offsetMarker(index, 0, y - point.y);
-      placed.push({ x: point.x, y, category: "vip" });
+      let x = point.x;
+      // The wider event overview can stack diamonds past the top edge on mobile.
+      if (y < 155) {
+        const candidates = [];
+        for (let dx = -16; dx <= 16; dx++) {
+          for (let dy = -32; dy <= -1; dy++) candidates.push([dx * 16, dy * 16]);
+        }
+        candidates.sort((a, b) => a[0] ** 2 + a[1] ** 2 - b[0] ** 2 - b[1] ** 2);
+        const offset = candidates.find(([dx, dy]) => {
+          const px = point.x + dx, py = point.y + dy;
+          return Math.hypot(dx, dy) >= spacing && px >= spacing / 2 && px <= container.clientWidth - spacing / 2
+            && py >= 155 && py <= container.clientHeight - 85
+            && placed.every(other => Math.abs(px - other.x) >= spacing || Math.abs(py - other.y) >= spacing);
+        });
+        if (offset) { x = point.x + offset[0]; y = point.y + offset[1]; }
+      }
+      offsetMarker(index, x - point.x, y - point.y);
+      placed.push({ x, y, category: "vip" });
     });
   }
 
@@ -313,7 +325,10 @@ try {
   panel.addEventListener("focusout", schedulePreviewClose);
   panel.querySelector("button").addEventListener("click", closePanel);
   document.addEventListener("keydown", event => {
-    if (event.key === "Escape" && !panel.hidden && !document.querySelector("dialog[open]")) closePanel();
+    if (event.key === "Escape" && !panel.hidden) {
+      event.preventDefault();
+      closePanel();
+    }
   });
   // Keep all pins in frame when a phone rotates or the window changes size.
   map.on("resize", () => {
