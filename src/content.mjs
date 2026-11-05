@@ -8,104 +8,82 @@ export const profile = {
 
 export const projects = [
   {
-    id: "hospitality",
-    number: "01",
-    category: "Hospitality / Guest experience",
-    title: "VIP hospitality<br>& guest experience.",
-    shortTitle: "VIP hospitality",
-    image: "jade-nightlife.webp",
-    alt: "Portrait of Jade in a black evening outfit beside a waterfront railing",
-    year: "2023 — Present",
-    className: "hospitality",
-    description:
-      "High-energy environments. Personal attention. From the first welcome to the final bottle presentation, I help create guest experiences that feel considered and memorable.",
-    role: "Bottle service · VIP hosting · Guest relations",
-    contributions: [
-      "Delivered attentive tableside service and bottle presentations in Singapore’s premium nightlife venues.",
-      "Built rapport with guests and coordinated with floor, bar and security teams.",
-      "Supported VIP table management and handled guest requests in busy service environments.",
+    "id": "hospitality",
+    "number": "01",
+    "category": "Hospitality / Guest experience",
+    "title": "Nightlife &amp; hospitality.",
+    "shortTitle": "Nightlife & Hospitality",
+    "image": "jade-nightlife.webp",
+    "alt": "Portrait of Jade in a black evening outfit beside a waterfront railing",
+    "year": "2023 — Present",
+    "className": "hospitality",
+    "description": "Nightlife has taught me to pay attention before I speak: to read the room, recognise what a guest needs and adjust how I communicate. When plans change or the pace picks up, I have to think clearly, solve problems with the team and stay composed. Working across different venues continues to strengthen my adaptability and confidence, while reminding me that a memorable experience is built on trust, discretion and consistent care.",
+    "role": "VIP hosting · Bottle service · Guest relations · Brand ambassadorship · Event staffing · Operations",
+    "contributions": [
+      "I continue to work across VIP hosting and bottle service, guest relations and brand ambassadorship, hospitality and event staffing, and venue coordination.",
+      "Across clubs, lounges, karaoke venues and live events, I adapt my approach to the setting and the people in front of me.",
+      "I build rapport with VIP guests, support table management and deliver bottle presentations and premium beverage service.",
+      "Event and promotional assignments give me experience representing brands and welcoming guests beyond regular venue service.",
+      "My previous administrative and operational responsibilities included staff scheduling and allocation, claims administration, training coordination and venue support."
     ],
-    learning:
-      "Great hospitality starts with reading the room. Being attentive, calm and adaptable helps me make each guest feel looked after, even when the pace picks up.",
+    "learning": "Good service depends on what happens behind the scenes as much as what a guest sees. Clear communication with floor, bar and security teams helps me respond to requests, manage pressure and keep the guest experience consistent."
   },
   {
-    id: "eldex",
-    number: "02",
-    category: "Content production / Events",
-    title: "WaterSource Evergreen<br>× ELDEX Asia 2026.",
-    shortTitle: "WaterSource Evergreen × ELDEX",
-    image: "eldex-filming.webp",
-    alt: "Jade filming an interview on the ELDEX exhibition floor",
-    year: "2026",
-    className: "eldex",
-    description:
-      "A hands-on content project for WaterSource Evergreen, from client conversations and product filming to on-site coverage at ELDEX Asia 2026.",
-    role: "Content ideation · Filming · Editing revisions · Client presentations",
-    contributions: [
-      "Contributed to the production of three marketing videos and prepared slides for client discussions.",
-      "Helped with event setup and filmed across the three-day ELDEX event.",
-      "Worked through feedback and editing revisions to refine product content and event highlights.",
+    "id": "eldex",
+    "number": "02",
+    "category": "Content production / Events",
+    "title": "WaterSource Evergreen<br>× ELDEX Asia 2026.",
+    "shortTitle": "WaterSource Evergreen × ELDEX",
+    "image": "eldex-filming.webp",
+    "alt": "Jade filming an interview on the ELDEX exhibition floor",
+    "year": "2026",
+    "className": "eldex",
+    "description": "Working with WaterSource Evergreen took me through the process of creating content for a real client: understanding the products, proposing ideas, planning shoots and refining the finished work. Site visits and conversations with the founder helped me connect our content choices to the people and purpose behind the brand.",
+    "role": "Product content · Filming · Event coverage · Editing · Client presentations",
+    "contributions": [
+      "Helped plan and produce product videos, with site visits, filming, founder interview preparation and filming support.",
+      "Supported event setup and filmed across all three days of ELDEX Asia 2026, adapting around visitors, booth activities and changing schedules.",
+      "Created event content and worked on highlight videos and post-event edits through multiple rounds of client feedback.",
+      "Contributed content ideas, including Guess-the-Product, and prepared material for client presentations."
     ],
-    reflection: [
-      ["Challenge", "Our initial ELDEX ideas felt exciting, but client feedback challenged whether they suited the brand. During the event, crowds and booth activities changed our filming schedule; a difficult customer interaction also tested my composure."],
-      ["How I responded", "I listened to the client’s perspective, worked through repeated video revisions and adjusted filming around what was happening on the floor. At the booth, I stayed calm and handled the interaction professionally."],
-      ["What I’ll carry forward", "Before pushing an idea forward, I want to check what it communicates for the brand. I’ll make room for feedback and keep filming plans flexible enough for a live event."],
-    ],
+    "learning": "In Week 3, pitching to the client showed me that an idea I found exciting still needed to suit the brand and be practical to deliver. By Weeks 4 and 5, I was learning how much planning sits behind a short video: the shots, pacing and message all matter. Filming at ELDEX required me to respond to what was happening around me, while a challenging customer interaction reminded me to stay calm and professional. Revising the highlights through Week 7 taught me to listen carefully, rethink work when needed and treat feedback as part of the creative process."
   },
   {
-    id: "melissa",
-    number: "03",
-    category: "Creative marketing / Talent coordination",
-    title: "Melissa Shoes.",
-    shortTitle: "Melissa Shoes",
-    image: null,
-    year: "2026",
-    className: "melissa",
-    description:
-      "Supporting the people, planning and research behind brand content for Melissa Shoes through my Teaching Enterprise Project.",
-    role: "Talent outreach · Content planning · Social media analysis",
-    contributions: [
-      "Reached out to talents, coordinated briefings and consolidated reference materials.",
-      "Researched content ideas and developed presentation slides aligned with the brand and its audience.",
-      "Analysed Instagram and TikTok posts and Reels performance to better understand audience response.",
+    "id": "melissa",
+    "number": "03",
+    "category": "Creative marketing / Talent coordination",
+    "title": "Melissa Shoes.",
+    "shortTitle": "Melissa Shoes",
+    "image": null,
+    "year": "2026",
+    "className": "melissa",
+    "description": "For Melissa Shoes, I supported the research and coordination behind brand content. The work connected audience insights and creative ideas with the practical details of finding talents, preparing briefings and helping the team get ready to shoot.",
+    "role": "Brand research · Social media analysis · Talent coordination · Content planning",
+    "contributions": [
+      "Researched the brand and analysed TikTok and Instagram content to understand its audience and visual direction.",
+      "Researched potential talents, carried out outreach and helped prepare briefings and collect reference photos and videos.",
+      "Developed content ideas and presentation slides, refining the proposed direction with the team.",
+      "Supported preparations for photoshoot and video content, connecting talent information with the creative plan."
     ],
-    reflection: [
-      ["Challenge", "Melissa’s talent outreach and content deck ran alongside WaterSource edits and DBM filming. Keeping several deliverables moving challenged my time management."],
-      ["How I responded", "I broke down tasks and prioritised what needed completing first. I gathered talent information and reference material, coordinated with teammates and consolidated our research into slides within the deadline."],
-      ["What I’ll carry forward", "I want to prioritise deadlines more deliberately and make sure teammates have the information they need. Organisation is part of the creative work, especially when several projects overlap."],
-    ],
+    "learning": "My Week 6 reflection made me recognise that creative work depends on organisation and follow-through. Gathering talent information, sharing references and finishing a presentation on time were small tasks with a direct effect on the team’s next steps. Continuing the outreach and presentation work in Week 7 helped me become more deliberate about priorities and clearer in how I communicate. I am learning to balance enthusiasm for an idea with the coordination needed to make it happen."
   },
+  {
+    "id": "cp-foods",
+    "number": "04",
+    "category": "Modelling / Campaign imagery",
+    "title": "CP co-branded product shoots.",
+    "shortTitle": "CP co-branded product shoots",
+    "image": "cp-personality.webp",
+    "alt": "CP campaign artwork featuring Jade wearing a graphic T-shirt",
+    "year": "2026",
+    "className": "cp-foods",
+    "description": "I contributed to CP co-branded product shoots by stepping in as a model, bringing my experience in front of the camera into a different team setting.",
+    "role": "Campaign modelling",
+    "contributions": [
+      "Modelled the co-branded graphic T-shirts for the campaign imagery."
+    ],
+    "learning": "In my Week 7 reflection, this stood out as a chance to contribute beyond my usual responsibilities. It reminded me to notice where my existing experience can help the team and take the initiative to offer it."
+  }
 ];
 
-export const roles = [
-  [
-    "2024 — Present",
-    "Bottle service",
-    "Marquee Singapore · TAO Group",
-    "Bottle parades and VIP guest engagement, delivered with professional hospitality standards.",
-  ],
-  [
-    "2025 — Present",
-    "Bottle service & guest relations",
-    "Havefun Group",
-    "Guest arrivals, personalised VIP service, table management and premium beverage service.",
-  ],
-  [
-    "2023 — 2025",
-    "VIP table host",
-    "ARK11 Singapore",
-    "Tableside service, champagne presentations and coordination with floor managers, bartenders and security.",
-  ],
-  [
-    "2026 — Present",
-    "Brand ambassador & guest relations",
-    "Truth or Dare",
-    "VIP sections, guest requests and relationship building in a lively service environment.",
-  ],
-  [
-    "2026 — Present",
-    "Bottle service & VIP host",
-    "Yang Club · 1-Group",
-    "Premium bottle service and guest engagement throughout busy operating hours.",
-  ],
-];
+export const aboutCopy = `<p>I actively work across multiple segments of the nightlife industry, including:</p><ul class="about-segments"><li>VIP hosting and bottle service</li><li>Guest relations and brand ambassadorship</li><li>Hospitality and event staffing</li><li>Venue operations and coordination</li></ul><p>I’m also currently participating in the Teaching Enterprise Project (TEP) at Nanyang Polytechnic, where I gain practical experience in marketing, content production, event execution, brand projects and business operations.</p>`;

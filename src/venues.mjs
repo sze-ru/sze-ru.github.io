@@ -1,0 +1,32 @@
+// Hospitality and event records from more_stuff/experiences.md.
+// Bugis+ and National Gallery building coordinates verified with OneMap on 2026-11-05.
+export const venues = [
+  {"category":"event","id":"mice","name":"MICE Event","year":"2022","area":"Marina Bay","address":"10 Bayfront Ave, Expo, Singapore 018956","coordinates":[103.858405,1.282397],"roles":["Presenting"]},
+  {"category":"event","id":"ship","name":"It’s The Ship","year":"2025","area":"Singapore Strait","address":"Offshore, Singapore Strait (approximate location)","coordinates":[103.87,1.22],"roles":["Bottle service"]},
+  {"category":"event","id":"avenue","name":"Avenue","year":"2025","area":"Marina Bay","address":"10 Bayfront Ave, The Shoppes, Marina Bay Sands, Singapore 018956","coordinates":[103.858405,1.282397],"roles":["Bottle service"]},
+  {"category":"event","id":"erdinger","name":"Erdinger Beer","year":"2025","area":"Raffles Quay","address":"18 Raffles Quay, Lau Pa Sat, Singapore 048582","coordinates":[103.850408,1.280594],"roles":["Bottle service","Promotion & sales"]},
+  {"category":"event","id":"horangi","name":"Horangi","year":"2025","area":"Neil Road","address":"67 Neil Rd, Singapore 088898","coordinates":[103.842357,1.279294],"roles":["Promotion & sales"]},
+  {"category":"event","id":"qi","name":"Qi","year":"2025","area":"Suntec City","address":"3 Temasek Blvd, Suntec Tower 4, Singapore 038983","coordinates":[103.859724,1.294646],"summary":"Guest relations and bottle service for the club launch at Qi.","roles":["Guest relations","Bottle service"]},
+  {"category":"event","id":"celavi","name":"Celavi","year":"2026","area":"Marina Bay","address":"1 Bayfront Avenue, Marina Bay Sands, Singapore 018971","coordinates":[103.861006,1.284662],"roles":["Bottle service"]},
+  {"category":"event","id":"beerfest","name":"Beerfest Asia","year":"2026","area":"Sentosa","address":"Siloso Beach Walk, Singapore 098033","coordinates":[103.815144,1.253633],"roles":["Bartending","Promotion & sales"]},
+  {"category":"event","id":"macallan","name":"Macallan","year":"2026","area":"Marina Centre","address":"9 Raffles Blvd, Millenia Walk, Singapore 039596","coordinates":[103.859725,1.292605],"roles":["Promotion & sales"]},
+  {"category":"event","id":"jadore-nuss","name":"J’Adore Models x Pernod Ricard — NUSS","year":"2026","area":"Kent Ridge","address":"9 Kent Ridge Dr, NUSS Kent Ridge Guild House, Singapore 119241","coordinates":[103.772623,1.293791],"roles":["Promotion & sales"]},
+  {"category":"event","id":"jadore-bosch","name":"J’Adore Models x Pernod Ricard — Bosch","year":"2026","area":"Bishan","address":"11 Bishan Street 21, Bosch, Singapore 573943","coordinates":[103.841327,1.347541],"roles":["Promotion & sales"]},
+  {"category":"event","id":"jadore-havelock","name":"J’Adore Models x Pernod Ricard — Havelock 2","year":"2026","area":"Havelock Road","address":"2 Havelock Rd, Havelock 2, Singapore 059763","coordinates":[103.845154,1.287151],"roles":["Promotion & sales"]},
+  {"category":"event","id":"echo","name":"Echo","year":"2026","area":"Suntec City","address":"3 Temasek Blvd, Suntec, Singapore 038983","coordinates":[103.859014,1.295932],"roles":["Bottle service","Guest relations"]},
+  {"category":"event","id":"amber-lounge","name":"Amber Lounge","year":"2026","area":"Collyer Quay","address":"80 Collyer Quay, Fullerton Bay Hotel, Singapore 049326","coordinates":[103.853527,1.283231],"summary":"Bottle service at Amber Lounge’s F1 pop-up party.","roles":["Bottle service"]},
+  {"category":"vip","id":"marquee","name":"Marquee Singapore","area":"Marina Bay","address":"10 Bayfront Ave, The Shoppes, Marina Bay Sands, Singapore 018956","coordinates":[103.858405,1.282397],"year":"2024–Present","summary":"Bottle parades and VIP guest engagement, delivered with professional hospitality standards.","roles":["Bottle service"]},
+  {"category":"vip","id":"havefun","name":"HaveFun Bugis+","area":"Bugis","address":"201 Victoria St, Bugis+, Singapore 188067","coordinates":[103.8542423474883,1.299603689902971],"year":"2025–Present","roles":["Bottle service","Guest relations"]},
+  {"category":"vip","id":"ark11","name":"ARK11 Singapore","area":"Orchard","address":"181 Orchard Rd, Orchard Central, Singapore 238896","coordinates":[103.839435,1.300839],"year":"2023–2025","roles":["VIP hosting","Guest relations","Administration","Payroll"]},
+  {"category":"vip","id":"truth-or-dare","name":"Truth or Dare","area":"North Canal Road","address":"11 North Canal Road, The Offshore Building, Singapore 048824","coordinates":[103.848848,1.28622],"year":"2026–Present","roles":["Guest relations","VIP hosting","Bottle service"]},
+  {"category":"vip","id":"yang","name":"Yang Club","area":"Clarke Quay","address":"3A River Valley Road, The Riverhouse, Singapore 179020","coordinates":[103.845026,1.289963],"year":"2026–Present","roles":["VIP hosting","Guest relations"]},
+  {"category":"vip","id":"sincity","name":"SinCity","year":"2025–2026","area":"Tanjong Pagar","address":"51 Tanjong Pagar Road, Singapore 088472","coordinates":[103.844046,1.278731],"roles":["Bottle service","Guest relations"]},
+  {"category":"vip","id":"plus65","name":"+65","year":"2024","area":"Marina Square","address":"7 Raffles Blvd, Pan Pacific Hotel, Singapore 039595","coordinates":[103.858804,1.292373],"roles":["Bottle service","Guest relations"]},
+  {"category":"vip","id":"drip","name":"Drip","year":"2023","area":"Orchard","address":"100 Orchard Rd, Singapore 238840","coordinates":[103.842228,1.300614],"roles":["VIP hosting"]},
+  {"category":"vip","id":"xclusiv","name":"Xclusiv","year":"2023","area":"Marina Square","address":"6 Raffles Boulevard, Raffles Link, Singapore 039594","coordinates":[103.858578,1.291855],"roles":["Bottle service","Guest relations"]},
+  {"id":"millis","name":"Millis","year":"2026–Present","roles":["VIP hosting"],"area":"Civic District","address":"1 St Andrew’s Rd, National Gallery, Singapore 178957","coordinates":[103.8517080135591,1.290655338403677],"category":"vip"},
+].map(venue => ({
+  ...venue,
+  role: venue.roles.join(" · "),
+  summary: venue.summary || `${venue.roles.join(", ")} at ${venue.name}.`,
+}));
