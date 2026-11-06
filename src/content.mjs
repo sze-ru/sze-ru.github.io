@@ -63,9 +63,10 @@ export const projects = [
       "Researched the brand and analysed TikTok and Instagram content to understand its audience and visual direction.",
       "Researched potential talents, carried out outreach and helped prepare briefings and collect reference photos and videos.",
       "Developed content ideas and presentation slides, refining the proposed direction with the team.",
-      "Supported preparations for photoshoot and video content, connecting talent information with the creative plan."
+      "Reviewed proposed talent content in Week 10 to check its fit with the brand and creative direction.",
+      "Completed final talent outreach, helped collect and distribute the shoes, and briefed talents ahead of content production."
     ],
-    "learning": "My Week 6 reflection made me recognise that creative work depends on organisation and follow-through. Gathering talent information, sharing references and finishing a presentation on time were small tasks with a direct effect on the team’s next steps. Continuing the outreach and presentation work in Week 7 helped me become more deliberate about priorities and clearer in how I communicate. I am learning to balance enthusiasm for an idea with the coordination needed to make it happen."
+    "learning": "My Week 6 reflection made me recognise that creative work depends on organisation and follow-through. Gathering talent information, sharing references and finishing a presentation on time were small tasks with a direct effect on the team’s next steps. Continuing the outreach and presentation work in Week 7 helped me become more deliberate about priorities and clearer in how I communicate. Collecting and distributing the shoes and briefing talents in Week 9 brought that preparation into practice. Reviewing their content ideas in Week 10 helped me consider whether each concept served the brand. I learnt to balance enthusiasm for an idea with the coordination needed to make it happen."
   },
   {
     "id": "cp-foods",
@@ -86,4 +87,4 @@ export const projects = [
   }
 ];
 
-export const aboutCopy = `<p>I actively work across multiple segments of the nightlife industry, including:</p><ul class="about-segments"><li>VIP hosting and bottle service</li><li>Guest relations and brand ambassadorship</li><li>Hospitality and event staffing</li><li>Venue operations and coordination</li></ul><p>I’m also currently participating in the Teaching Enterprise Project (TEP) at Nanyang Polytechnic, where I gain practical experience in marketing, content production, event execution, brand projects and business operations.</p>`;
+export const aboutCopy = `<p>I actively work across multiple segments of the nightlife industry, including:</p><ul class="about-segments"><li>VIP hosting and bottle service</li><li>Guest relations and brand ambassadorship</li><li>Hospitality and event staffing</li><li>Venue operations and coordination</li></ul><p>Through the Teaching Enterprise Project (TEP) at Nanyang Polytechnic, I gained practical experience in marketing, content production, event execution, brand projects and business operations.</p>`;

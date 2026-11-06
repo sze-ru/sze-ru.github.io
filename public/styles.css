@@ -2086,8 +2086,6 @@ html:not(.js-enabled) .scene-map-slot,
 .interest-art { position: relative; aspect-ratio: 2 / 1; background: radial-gradient(ellipse at top, #343d43, #1b2024); }
 .interest-art svg { width: 100%; height: 100%; stroke: #a3b8c7; stroke-width: 1.5; }
 .interest-art span { position: absolute; left: 24px; top: 18px; font-size: 11px; text-transform: uppercase; letter-spacing: .12em; color: #d3dbe0; }
-.urbex .interest-art { background: radial-gradient(ellipse at bottom, #513930, #201b19); }
-.urbex svg { stroke: #c7977f; }
 .interest-copy { padding: 28px; }
 .interest-copy h3 { font-size: 30px; margin-bottom: 12px; }
 .interest-copy p { font-size: 14px; }
@@ -2184,9 +2182,6 @@ html:not(.js-enabled) .scene-map-slot,
 .personal-grid > section { min-width: 0; }
 .personal-grid .category-caption h2 { font-size: clamp(27px, 3vw, 40px); }
 .personal-grid .category-caption > .micro { margin: 0 0 12px; }
-.personal-card-art { height: 100%; background: linear-gradient(155deg, #293c46, #242526 50%, #56382a); }
-.personal-card-art svg { height: 100%; width: 100%; stroke: #b3bbb9; stroke-width: 1.5; }
-.personal-card-art > .micro { position: absolute; top: 24px; left: 24px; right: 24px; color: var(--white); }
 html:not(.js-enabled) .personal-modal { display: block; position: static; width: min(1100px, calc(100% - 40px)); max-height: none; margin: 32px auto; padding: 32px; }
 html:not(.js-enabled) .personal-modal .modal-close { display: none; }
 @media (max-width: 760px) {
@@ -2243,9 +2238,11 @@ html:not(.js-enabled) .personal-modal .modal-close { display: none; }
 .gallery-group { flex-shrink: 0; gap: 16px; padding-right: 16px; }
 .gallery-group figure { flex: none; margin: 0; }
 .gallery-group img { display: block; height: var(--gallery-height); width: auto; max-width: none; object-fit: contain; }
+.gallery-group figcaption { width: 0; min-width: 100%; padding: 14px 4px; font-size: 13px; line-height: 1.65; color: var(--muted); }
+.gallery-group figcaption p + p { margin-top: 8px; }
 .gallery-group[aria-hidden] { display: none; }
 .js-enabled .gallery-group[aria-hidden] { display: flex; }
-.js-enabled .gallery-track { animation: gallery-drift 160s linear infinite; }
+.js-enabled .gallery-track { animation: gallery-drift var(--gallery-duration, 160s) linear infinite; }
 @keyframes gallery-drift { from { transform: translateX(-50%); } to { transform: translateX(0); } }
 .gallery-preview { position: absolute; inset: 0; --gallery-height: 100%; overflow: hidden; }
 .gallery-preview .gallery-track, .gallery-preview .gallery-group, .gallery-preview figure { height: 100%; }
@@ -2282,6 +2279,26 @@ html:not(.js-enabled) .personal-modal .modal-close { display: none; }
 .tep-timeline { border-left: 1px solid var(--accent); margin-left: 6px; }
 .tep-timeline li { position: relative; padding-left: 24px; }
 .tep-timeline li::before { content: ''; position: absolute; left: -5px; top: 35px; width: 9px; height: 9px; border-radius: 50%; background: var(--accent); }
+
+/* Shared photo stories keep each supplied group and its caption together. */
+.photo-story { margin: 28px 0; min-width: 0; }
+.photo-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: center; gap: 16px; }
+.photo-grid img { display: block; width: 100%; height: auto; max-height: 480px; object-fit: contain; margin: 0; }
+.photo-grid img:only-child { grid-column: 1 / -1; }
+.photo-story figcaption, .travel-film figcaption { margin-top: 14px; color: var(--muted); font-size: 14px; line-height: 1.7; }
+.photo-story figcaption p + p { margin-top: 10px; }
+#dialog-interests .interest-grid { grid-template-columns: minmax(0, 1fr); }
+#dialog-interests .skating { display: grid; grid-template-columns: 1fr 1fr; align-items: center; }
+.interest-card > .photo-story, .travel-film { margin: 0 28px 28px; }
+.travel-film video { display: block; width: 100%; height: auto; max-height: 520px; background: #000; }
+.tep-contribution { margin-top: 40px; }
+.tep-contribution > h4 { font-size: 22px; margin-bottom: 14px; }
+.tep-contribution > p { max-width: 75ch; }
+@media (max-width: 600px) {
+  .photo-grid, #dialog-interests .skating { grid-template-columns: minmax(0, 1fr); }
+  .interest-copy { padding: 20px; }
+  .interest-card > .photo-story, .travel-film { margin-inline: 20px; }
+}
 @media (max-width: 760px) {
   .additional-experience { grid-template-columns: minmax(0, 1fr); gap: 32px; }
   .experience-directory { padding: 20px 16px; }

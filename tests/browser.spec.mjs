@@ -36,7 +36,7 @@ test("experience directory filters full roles and TEP timeline works inside its 
     const dialog = page.locator('#dialog-tep');
     await dialog.getByRole('link', { name: 'Learning timeline', exact: true }).click();
     await expect(dialog.locator('#tep-reflections-heading')).toBeInViewport();
-    await expect(dialog.getByRole('list', { name: 'TEP learning timeline' }).locator('li')).toHaveCount(6);
+    await expect(dialog.getByRole('list', { name: 'TEP learning timeline' }).locator('li')).toHaveCount(10);
     await expect(dialog.getByRole('list', { name: 'TEP learning timeline' })).toContainText('Week 7');
     await page.getByRole('button', { name: 'Close experience', exact: true }).click();
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
@@ -179,10 +179,10 @@ test("About Me uses one portrait and personal cards open their contents", async 
       await expect(card).toBeFocused();
     }
     await interests.click();
-    await expect(page.locator('#dialog-interests h3')).toHaveText(['Figure skating', 'Urbex']);
+    await expect(page.locator('#dialog-interests h3')).toHaveText(['Figure skating', 'Urbex', 'Travelling']);
     await page.keyboard.press('Escape');
     await gallery.click();
-    await expect(page.locator('#dialog-gallery .gallery-group:not([aria-hidden]) img')).toHaveCount(14);
+    await expect(page.locator('#dialog-gallery .gallery-group:not([aria-hidden]) img')).toHaveCount(37);
     const results = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa']).analyze();
     expect(results.violations).toEqual([]);
     await page.keyboard.press('Escape');
@@ -193,7 +193,7 @@ test("About Me uses one portrait and personal cards open their contents", async 
 test("gallery preview moves right and respects reduced motion", async ({ page }) => {
   await page.goto('/#gallery');
   const track = page.locator('#gallery-preview .gallery-track');
-  await expect(page.locator('#gallery-preview .gallery-group:not([aria-hidden]) img')).toHaveCount(14);
+  await expect(page.locator('#gallery-preview .gallery-group:not([aria-hidden]) img')).toHaveCount(37);
   await page.mouse.move(0, 0);
   const x = () => track.evaluate(el => new DOMMatrix(getComputedStyle(el).transform).m41);
   const before = await x();
@@ -830,10 +830,10 @@ test("new sections and navigation work without JavaScript", async ({ browser }) 
   await page.goto('/');
   await expect(page.getByRole('navigation', { name: 'Main navigation' }).locator('a')).toHaveText(['Home', 'About Me', 'Experience', 'Personal Interests', 'Gallery', 'Contact']);
   await page.getByRole('link', { name: 'Personal Interests', exact: true }).click();
-  await expect(page.locator('#dialog-interests h3')).toHaveText(['Figure skating', 'Urbex']);
+  await expect(page.locator('#dialog-interests h3')).toHaveText(['Figure skating', 'Urbex', 'Travelling']);
   await page.getByRole('link', { name: 'Gallery', exact: true }).click();
   await page.locator('.gallery-opener').click();
-  await expect(page.locator('#dialog-gallery .gallery-group:not([aria-hidden]) img')).toHaveCount(14);
+  await expect(page.locator('#dialog-gallery .gallery-group:not([aria-hidden]) img')).toHaveCount(37);
   await expect(page.locator('#dialog-gallery')).toBeVisible();
   await page.locator('.nightlife-card').click();
   await expect(page).toHaveURL(/work\/#occasions$/);
@@ -857,7 +857,7 @@ test('TEP card contains the improved projects and reflections', async ({ page })
     await expect(page.locator('#tep')).toBeVisible();
     await expect(page.locator('dialog #tep')).toHaveCount(1);
     await expect(page.locator('#dialog-tep')).toBeVisible();
-    await expect(page.locator('#tep .tep-timeline li')).toHaveCount(6);
+    await expect(page.locator('#tep .tep-timeline li')).toHaveCount(10);
     for (const target of ['eldex', 'melissa', 'dstudio', 'tep-other']) {
       const link = page.locator(`.tep-project-nav a[href="#${target}"]`);
       await link.click();
@@ -888,7 +888,7 @@ test('gallery shows every unique photo at equal heights and drifts right without
   await page.locator('.gallery-opener').click();
   const gallery = page.locator('#gallery-photos');
   const photos = gallery.locator('.gallery-group:not([aria-hidden]) img');
-  await expect(photos).toHaveCount(14);
+  await expect(photos).toHaveCount(37);
   for (const width of [375, 1440]) {
     await page.setViewportSize({ width, height: 900 });
     const heights = await photos.evaluateAll(images => images.map(image => image.getBoundingClientRect().height));
@@ -910,4 +910,37 @@ test('gallery shows every unique photo at equal heights and drifts right without
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await expect(track).toHaveCSS('animation-name', 'none');
   await expect(gallery.locator('.gallery-group[aria-hidden]')).toBeHidden();
+});
+
+
+test('personal photo groups stay in sync with the preview and travel media closes cleanly', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  for (const width of [375, 1440]) {
+    await page.setViewportSize({ width, height: 900 });
+    await page.goto('/');
+    const preview = page.locator('#interests-preview .gallery-group:not([aria-hidden]) img');
+    await expect(preview).toHaveCount(9);
+    await page.locator('.interests-opener').click();
+    const dialog = page.locator('#dialog-interests');
+    const photos = dialog.locator('.photo-grid img');
+    await expect(photos).toHaveCount(9);
+    expect(await preview.evaluateAll(imgs => imgs.map(img => img.getAttribute('src')).sort()))
+      .toEqual(await photos.evaluateAll(imgs => imgs.map(img => img.getAttribute('src')).sort()));
+    for (const photo of await photos.all()) {
+      await photo.scrollIntoViewIfNeeded();
+      await expect.poll(() => photo.evaluate(img => img.complete && img.naturalWidth > 0)).toBe(true);
+    }
+    expect(await dialog.evaluate(el => el.scrollWidth <= el.clientWidth)).toBe(true);
+    const video = dialog.locator('video');
+    await expect(video).toHaveAttribute('preload', 'none');
+    await video.scrollIntoViewIfNeeded();
+    await video.evaluate(el => { el.muted = true; return el.play(); });
+    await expect.poll(() => video.evaluate(el => el.paused)).toBe(false);
+    const results = await new AxeBuilder({ page }).include('#dialog-interests')
+      .withTags(['wcag2a', 'wcag2aa', 'wcag21aa']).analyze();
+    expect(results.violations).toEqual([]);
+    await page.keyboard.press('Escape');
+    await expect.poll(() => video.evaluate(el => el.paused)).toBe(true);
+    await expect(page.locator('.interests-opener')).toBeFocused();
+  }
 });
