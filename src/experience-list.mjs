@@ -5,7 +5,7 @@ export const modelling = [
   { id: '70-chilling', name: '70.chilling', year: '2024', roles: ['Lifestyle modelling'] },
   { id: 'max-wong', name: 'Max Wong Studio', year: '2025, 2026', roles: ['Lifestyle modelling'] },
   { id: 'whitefire', name: 'Whitefire', year: '2026', roles: ['Fashion jewellery modelling'] },
-  { id: 'cp-modelling', name: 'CP Foods', year: '2026', roles: ['Fashion modelling'], href: '/work/#cp-foods' },
+  { id: 'cp-modelling', name: 'CP Foods', year: '2026', roles: ['Fashion modelling'], href: '#cp-foods', dialog: 'dialog-tep' },
 ];
 export const otherWork = [
   { id: 'tutor', name: 'Private Tutor', year: '2019–2020', roles: ['Tutoring'], address: '920 Tiong Bahru Rd, Singapore 158792' },
@@ -21,7 +21,7 @@ export function experienceList(entries) {
     ${entry.address ? `<p>${escape(entry.address)}</p>` : ''}
     ${entry.summary ? `<p>${escape(entry.summary)}</p>` : ''}
     ${entry.coordinates ? `<a class="venue-directions text-link" href="https://www.google.com/maps/search/?api=1&amp;query=${encodeURIComponent(`${entry.coordinates[1]},${entry.coordinates[0]}`)}" target="_blank" rel="noopener noreferrer" aria-label="Find ${escape(entry.name)} on Google Maps">View location ↗</a>` : ''}
-    ${entry.href ? `<a class="text-link" href="${entry.href}">View campaign ↗</a>` : ''}</div>
+    ${entry.href ? `<a class="text-link" href="${entry.href}"${entry.dialog ? ` data-dialog="${entry.dialog}" data-dialog-target="${entry.href.slice(1)}"` : ''}>View campaign ↗</a>` : ''}</div>
   </details>`).join('')}</div>`;
 }
 

@@ -836,12 +836,18 @@ test("new sections and navigation work without JavaScript", async ({ browser }) 
   await expect(page.locator('#dialog-gallery .gallery-group:not([aria-hidden]) img')).toHaveCount(37);
   await expect(page.locator('#dialog-gallery')).toBeVisible();
   await page.locator('.nightlife-card').click();
-  await expect(page).toHaveURL(/work\/#occasions$/);
+  await expect(page).toHaveURL(/\/#occasions$/);
+  expect(new URL(page.url()).pathname).toBe('/');
   await expect(page.locator('.venue-fallback')).toBeVisible();
   await page.goto('/');
   await page.locator('.tep-card').click();
-  await expect(page).toHaveURL(/work\/#tep$/);
+  await expect(page).toHaveURL(/\/#tep$/);
+  expect(new URL(page.url()).pathname).toBe('/');
   await expect(page.locator('#eldex .case-copy')).toBeVisible();
+  await page.locator('.experience-entry summary').filter({ hasText: 'CP Foods' }).click();
+  await page.getByRole('link', { name: 'View campaign' }).click();
+  expect(new URL(page.url()).pathname).toBe('/');
+  await expect(page.locator('#cp-foods > h4')).toBeInViewport();
   await context.close();
 });
 
@@ -943,5 +949,38 @@ test('personal photo groups stay in sync with the preview and travel media close
     await page.keyboard.press('Escape');
     await expect.poll(() => video.evaluate(el => el.paused)).toBe(true);
     await expect(page.locator('.interests-opener')).toBeFocused();
+  }
+});
+
+
+test('campaign and hospitality detail links stay in the homepage dialogs', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  for (const width of [375, 1440]) {
+    await page.setViewportSize({ width, height: 900 });
+    await page.goto('/');
+    await page.locator('.experience-entry summary').filter({ hasText: 'CP Foods' }).click();
+    const campaign = page.getByRole('link', { name: 'View campaign' });
+    await campaign.focus();
+    await page.keyboard.press('Enter');
+    expect(new URL(page.url()).pathname).toBe('/');
+    await expect(page.locator('#dialog-tep')).toBeVisible();
+    await expect(page.locator('#cp-foods > h4')).toBeInViewport();
+    await expect(page.locator('#cp-foods > h4')).toBeFocused();
+    await page.keyboard.press('Escape');
+    await expect(campaign).toBeFocused();
+    await page.locator('.tep-card').click();
+    await expect(page.locator('#tep-heading')).toBeInViewport();
+    await page.keyboard.press('Escape');
+    await expect(page.locator('.tep-card')).toBeFocused();
+    await page.locator('.nightlife-card').click();
+    await page.getByRole('link', { name: 'My roles at Marquee, Havefun & more' }).click();
+    expect(new URL(page.url()).pathname).toBe('/');
+    await expect(page.locator('#dialog-hospitality')).toBeVisible();
+    await expect(page.locator('#occasions > h3')).toBeInViewport();
+    await page.keyboard.press('Escape');
+    await page.goto('/#cp-foods');
+    await expect(page.locator('#dialog-tep')).toBeVisible();
+    await expect(page.locator('#cp-foods > h4')).toBeInViewport();
+    await page.keyboard.press('Escape');
   }
 });

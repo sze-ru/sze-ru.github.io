@@ -12,7 +12,7 @@ export function projectDetails(project, heading = "h3") {
     <div class="case-role"><${heading} class="micro">My Role</${heading}><p>${escape(project.role)}</p></div>
     <${heading}>What I Contributed</${heading}><ul>${project.contributions.map(text => `<li>${escape(text)}</li>`).join("")}</ul>
     <div class="takeaway"><${heading} class="micro">What I Took Away</${heading}><p>${escape(project.learning)}</p></div>
-    ${project.id === "hospitality" ? `<a class="text-link" href="/work/#occasions">My roles at Marquee, Havefun & more ${arrow}</a>` : ""}
+    ${project.id === "hospitality" ? `<a class="text-link" href="#occasions">My roles at Marquee, Havefun & more ${arrow}</a>` : ""}
   </div>`;
 }
 
@@ -25,8 +25,8 @@ export function projectExtras(project) {
 export function experienceCards(projects, tepContent) {
   const hospitality = projects.find(project => project.id === "hospitality");
   return `<div class="experience-categories">
-    <a class="category-card nightlife-card" href="/work/#occasions" data-dialog="dialog-hospitality" aria-haspopup="dialog"><img class="map-preview" src="/assets/venue-map-preview.png" alt="Map of Jade’s hospitality venues and events across Singapore" width="600" height="600" loading="lazy" decoding="async"><div class="category-caption"><h3>Nightlife &amp; Hospitality</h3><span>Explore the map ↗</span></div></a>
-    <a class="category-card tep-card" href="/work/#tep" data-dialog="dialog-tep" aria-haspopup="dialog">${image("eldex-filming.webp", "Jade creating content on the ELDEX exhibition floor")}<div class="category-caption"><h3>TEP</h3><span>Projects &amp; learning timeline ↗</span></div></a>
+    <a class="category-card nightlife-card" href="#occasions" data-dialog="dialog-hospitality" aria-haspopup="dialog"><img class="map-preview" src="/assets/venue-map-preview.png" alt="Map of Jade’s hospitality venues and events across Singapore" width="600" height="600" loading="lazy" decoding="async"><div class="category-caption"><h3>Nightlife &amp; Hospitality</h3><span>Explore the map ↗</span></div></a>
+    <a class="category-card tep-card" href="#tep" data-dialog="dialog-tep" aria-haspopup="dialog">${image("eldex-filming.webp", "Jade creating content on the ELDEX exhibition floor")}<div class="category-caption"><h3>TEP</h3><span>Projects &amp; learning timeline ↗</span></div></a>
   </div>
   ${additionalExperience()}
   <dialog class="category-modal" id="dialog-hospitality" aria-labelledby="hospitality-title"><button class="modal-close" type="button" aria-label="Close experience" autofocus>×</button><h2 id="hospitality-title">Nightlife &amp; Hospitality</h2>${scene()}${projectDetails(hospitality)}</dialog>

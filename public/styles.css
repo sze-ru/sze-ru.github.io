@@ -2182,8 +2182,8 @@ html:not(.js-enabled) .scene-map-slot,
 .personal-grid > section { min-width: 0; }
 .personal-grid .category-caption h2 { font-size: clamp(27px, 3vw, 40px); }
 .personal-grid .category-caption > .micro { margin: 0 0 12px; }
-html:not(.js-enabled) .personal-modal { display: block; position: static; width: min(1100px, calc(100% - 40px)); max-height: none; margin: 32px auto; padding: 32px; }
-html:not(.js-enabled) .personal-modal .modal-close { display: none; }
+html:not(.js-enabled) .category-modal { display: block; position: static; width: min(1100px, calc(100% - 40px)); max-height: none; margin: 32px auto; padding: 32px; }
+html:not(.js-enabled) .category-modal .modal-close { display: none; }
 @media (max-width: 760px) {
   .intro-layout, .personal-grid { grid-template-columns: 1fr; }
   .intro-portrait { width: min(100%, 420px); margin-inline: auto; }
