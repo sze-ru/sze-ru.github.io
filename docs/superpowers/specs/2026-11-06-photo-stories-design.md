@@ -14,7 +14,7 @@ Use small, captioned photo groups inside the relevant existing sections. This gi
 | `Personal Interest: Travelling` | Personal Interests → Travelling | Three photographs and the supplied coastal clip with native playback controls. |
 | `stock taking` | TEP → D’Studio | Two photographs supporting the inventory and operations account. |
 | `TEP melissas shoes` | TEP → Melissa Shoes | One real project photograph beside the existing project description. |
-| `TEP: DBM: content production.` | TEP → Other contributions → DBM | Three photographs together as production evidence. |
+| `TEP: DBM: content production.` | TEP → DBM | Three photographs together as production evidence. |
 | `TEP: refresh` | TEP → Other contributions → Refresh | Two photographs together with the consumer-testing account. |
 | `TEP: extras` | TEP → Other contributions → Team moments | Two photographs; use the notes to identify their specific captions and context. |
 | `friends birthday` | TEP → Team moments | One photograph, identified as a personal team highlight rather than client work. |
@@ -28,7 +28,9 @@ Replace the Personal Interests card’s abstract preview with a photo strip sour
 
 Folder names determine content grouping. Any additional information in `more_more_stuff/notes` is caption content, not a new category or a reason to discard part of a caption. Preserve its meaning and first-person voice while correcting casing, spelling, punctuation and spacing. Associate shared captions with the complete corresponding photo group. Never invent locations, dates, identities or outcomes from an image alone.
 
-At initial inspection the notes file was zero bytes and had an editor lock. The owner has been asked to save it. Photo preparation and LinkedIn integration can proceed independently, but caption-dependent publication must wait for the saved notes.
+At initial inspection the notes file was zero bytes and had an editor lock. The owner subsequently supplied its complete contents in chat. Those supplied notes are the caption source; the open local file is left untouched.
+
+Caption details: Urbex keeps “Fun fact: I love geometric structures.” WaterSource is identified with ELDEX event coverage and content production. D’Studio is identified as Nanyang Polytechnic’s merchandise store, with stocktake, content production and e-commerce order tracking. Melissa combines product distribution to talents with talent sourcing and coordination, content production and social media analysis. DBM is a main TEP project with its own subsection and content-production caption. Refresh is prebiotic soda taste testing and survey responses for another team. CP Foods is content-production support for another team. The birthday photograph is captioned as a TEP friend’s birthday celebration. Travelling and the uncategorised team/personal moments retain their folder-based labels.
 
 ## LinkedIn integration
 

@@ -8,7 +8,7 @@
 
 ## Constraints
 
-Follow `../specs/2026-11-06-photo-stories-design.md`. No new dependencies. Preserve all 14 existing photos and six timeline milestones. Notes supply captions; publication waits for their saved contents. Keep raw source material outside commits and deployment.
+Follow `../specs/2026-11-06-photo-stories-design.md`. No new dependencies. Preserve all 14 existing photos and six timeline milestones. The notes supplied in chat provide captions. Keep raw source material outside commits and deployment.
 
 ## Steps
 
@@ -17,7 +17,7 @@ Follow `../specs/2026-11-06-photo-stories-design.md`. No new dependencies. Prese
 - [x] Extend `src/gallery.mjs` with `photoGroups`, `photoGrid(group)` and `interestPhotos`. Keep the existing `galleryStrip()` calls working; add optional photo-list and ID parameters for the Interests preview. Escape caption and alternative text. Render gallery captions only in the non-preview strip.
 - [x] Update `src/pages/home.mjs` to use the shared Interests photo preview, Urbex grid and Travelling grid/video. Add responsive photo-grid and caption rules in `public/styles.css`.
 - [x] Update `src/tep.mjs` with project photo groups, Weeks 8–10 and the closing reflection; update `src/content.mjs` and `src/pages/about.mjs` where later posts supersede older project accounts.
-- [ ] Read the saved notes and apply every additional detail as a properly formatted caption; check all source folders and captions against the resulting pages.
+- [x] Read the notes supplied in chat and apply every additional detail as a properly formatted caption; check all source folders and captions against the resulting pages.
 - [x] Update README editing and content coverage instructions. Run `npm run build`, `npm test`, `npm run test:browser`; inspect mobile/desktop screenshots and review the diff.
 - [ ] Commit only implementation, curated assets, tests and documentation. Push source with `git push origin main`; publish with `npm run deploy`; verify the live page and remote branch heads.
 
@@ -27,4 +27,4 @@ Follow `../specs/2026-11-06-photo-stories-design.md`. No new dependencies. Prese
 - Regression: the new Interests preview check failed against the old build (expected nine images, found zero), then passed after implementation.
 - Full browser suite: 37 tests passed using installed Google Chrome. The bundled Playwright headless shell crashed before page loading, so verification uses the documented executable override.
 - Mobile and desktop screenshots inspected; an independent code review found no actionable issues and confirmed no caption clipping or TEP overflow at 375/768/1440px.
-- Caption text and publication remain pending because `more_more_stuff/notes` is still zero bytes. No push or deployment has occurred.
+- The owner supplied the notes in chat after the initial verification. Applied their caption details, promoted DBM to a main project subsection and added a regression for caption coverage on both the homepage and work page. The open notes file is left untouched.

@@ -858,7 +858,7 @@ test('TEP card contains the improved projects and reflections', async ({ page })
     await expect(page.locator('dialog #tep')).toHaveCount(1);
     await expect(page.locator('#dialog-tep')).toBeVisible();
     await expect(page.locator('#tep .tep-timeline li')).toHaveCount(10);
-    for (const target of ['eldex', 'melissa', 'dstudio', 'tep-other']) {
+    for (const target of ['eldex', 'melissa', 'dstudio', 'dbm', 'tep-other']) {
       const link = page.locator(`.tep-project-nav a[href="#${target}"]`);
       await link.click();
       await expect(page.locator(`#${target}`)).toBeVisible();
@@ -922,6 +922,7 @@ test('personal photo groups stay in sync with the preview and travel media close
     await expect(preview).toHaveCount(9);
     await page.locator('.interests-opener').click();
     const dialog = page.locator('#dialog-interests');
+    await expect(dialog.locator('.urbex figcaption')).toHaveText('Fun fact: I love geometric structures.');
     const photos = dialog.locator('.photo-grid img');
     await expect(photos).toHaveCount(9);
     expect(await preview.evaluateAll(imgs => imgs.map(img => img.getAttribute('src')).sort()))

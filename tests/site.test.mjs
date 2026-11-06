@@ -141,3 +141,14 @@ test("hospitality card previews the real map and opens the map before its detail
   const modal = html.slice(html.indexOf('id="dialog-hospitality"'), html.indexOf('id="dialog-tep"'));
   assert.ok(modal.indexOf('id="venue-map"') < modal.indexOf('class="case-copy"'));
 });
+
+test("Jade’s notes appear as captions beside the relevant project photographs", () => {
+  for (const route of ['index.html', 'work/index.html']) {
+    const html = readFileSync(join('dist', route), 'utf8');
+    const captions = [...html.matchAll(/<figcaption>(.*?)<\/figcaption>/gs)].map(match => match[1]).join('\n');
+    for (const detail of ['ELDEX event coverage and content production', 'e-commerce order tracking', 'Distributing products to talents', 'social media analysis', 'DBM · Content production', 'Refresh prebiotic soda taste testing and survey responses', 'Celebrating a friend’s birthday', 'CP Foods · Supporting another team']) {
+      assert.ok(captions.includes(detail), `${route}: missing caption detail ${detail}`);
+    }
+    assert.ok(html.indexOf('id="dbm"') < html.indexOf('id="tep-other"'), 'DBM is a main project, before other contributions');
+  }
+});

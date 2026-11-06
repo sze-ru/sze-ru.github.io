@@ -46,18 +46,21 @@ const originalPhotos = [
   },
   {
     "src": "/gallery/watersource-visit.jpg",
+    "caption": "WaterSource Evergreen · ELDEX event coverage and content production.",
     "alt": "Jade trying a product during a WaterSource visit",
     "width": 720,
     "height": 1280
   },
   {
     "src": "/gallery/eldex-booth.jpg",
+    "caption": "WaterSource Evergreen · ELDEX event coverage and content production.",
     "alt": "Visitors and team members at an ELDEX exhibition booth",
     "width": 720,
     "height": 1280
   },
   {
     "src": "/gallery/eldex-filming.jpg",
+    "caption": "WaterSource Evergreen · ELDEX event coverage and content production.",
     "alt": "Filming on the ELDEX exhibition floor",
     "width": 720,
     "height": 1280
@@ -70,12 +73,14 @@ const originalPhotos = [
   },
   {
     "src": "/gallery/cp-collaboration.jpg",
+    "caption": "CP Foods · Supporting another team’s content production.",
     "alt": "CP campaign artwork featuring two models in graphic T-shirts",
     "width": 1024,
     "height": 1280
   },
   {
     "src": "/gallery/cp-personality.jpg",
+    "caption": "CP Foods · Supporting another team’s content production.",
     "alt": "CP campaign artwork featuring Jade in a graphic T-shirt",
     "width": 1024,
     "height": 1280
@@ -92,7 +97,7 @@ const originalPhotos = [
 export const photoGroups = {
   "urbex": {
     "title": "Urban exploration",
-    "caption": "",
+    "caption": "Fun fact: I love geometric structures.",
     "photos": [
       {
         "src": "/gallery/urbex-1.webp",
@@ -158,7 +163,7 @@ export const photoGroups = {
   },
   "stocktake": {
     "title": "D’Studio stocktake",
-    "caption": "",
+    "caption": "D’Studio, Nanyang Polytechnic’s merchandise store: stocktake, content production and e-commerce order tracking.",
     "photos": [
       {
         "src": "/gallery/stocktake-1.webp",
@@ -176,7 +181,7 @@ export const photoGroups = {
   },
   "melissa": {
     "title": "Melissa Shoes",
-    "caption": "",
+    "caption": "Melissa Shoes · Distributing products to talents.\nTalent sourcing and coordination, content production and social media analysis.",
     "photos": [
       {
         "src": "/gallery/melissa-1.webp",
@@ -188,7 +193,7 @@ export const photoGroups = {
   },
   "dbm": {
     "title": "DBM content production",
-    "caption": "",
+    "caption": "DBM · Content production.",
     "photos": [
       {
         "src": "/gallery/dbm-1.webp",
@@ -212,7 +217,7 @@ export const photoGroups = {
   },
   "refresh": {
     "title": "Refresh consumer testing",
-    "caption": "",
+    "caption": "Supporting another team’s project: Refresh prebiotic soda taste testing and survey responses.",
     "photos": [
       {
         "src": "/gallery/refresh-1.webp",
@@ -248,7 +253,7 @@ export const photoGroups = {
   },
   "birthday": {
     "title": "A friend’s birthday",
-    "caption": "",
+    "caption": "TEP · Celebrating a friend’s birthday.",
     "photos": [
       {
         "src": "/gallery/birthday-1.webp",
