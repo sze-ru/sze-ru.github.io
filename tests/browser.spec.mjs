@@ -179,7 +179,7 @@ test("About Me uses one portrait and personal cards open their contents", async 
       await expect(card).toBeFocused();
     }
     await interests.click();
-    await expect(page.locator('#dialog-interests h3')).toHaveText(['Figure skating', 'Urbex', 'Travelling']);
+    await expect(page.locator('#dialog-interests h3')).toHaveText(['Urbex', 'Travelling']);
     await page.keyboard.press('Escape');
     await gallery.click();
     await expect(page.locator('#dialog-gallery .gallery-group:not([aria-hidden]) img')).toHaveCount(37);
@@ -830,7 +830,7 @@ test("new sections and navigation work without JavaScript", async ({ browser }) 
   await page.goto('/');
   await expect(page.getByRole('navigation', { name: 'Main navigation' }).locator('a')).toHaveText(['Home', 'About Me', 'Experience', 'Personal Interests', 'Gallery', 'Contact']);
   await page.getByRole('link', { name: 'Personal Interests', exact: true }).click();
-  await expect(page.locator('#dialog-interests h3')).toHaveText(['Figure skating', 'Urbex', 'Travelling']);
+  await expect(page.locator('#dialog-interests h3')).toHaveText(['Urbex', 'Travelling']);
   await page.getByRole('link', { name: 'Gallery', exact: true }).click();
   await page.locator('.gallery-opener').click();
   await expect(page.locator('#dialog-gallery .gallery-group:not([aria-hidden]) img')).toHaveCount(37);
@@ -893,6 +893,7 @@ test('gallery shows every unique photo at equal heights and drifts right without
   await page.goto('/#gallery');
   await page.locator('.gallery-opener').click();
   const gallery = page.locator('#gallery-photos');
+  await expect(gallery.locator('figcaption')).toHaveCount(0);
   const photos = gallery.locator('.gallery-group:not([aria-hidden]) img');
   await expect(photos).toHaveCount(37);
   for (const width of [375, 1440]) {

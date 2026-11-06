@@ -126,7 +126,7 @@ test("homepage keeps TEP content inside its experience card popup", () => {
   assert.match(html, /Week 7/);
   assert.match(html, /Guess-the-Product/);
   assert.match(html, /claims administration/);
-  assert.match(html, /Figure skating/);
+  assert.doesNotMatch(html, /skating/i);
   assert.match(html, /Urbex/);
   assert.match(html, /src="\/gallery\/posing.jpg"/);
   assert.match(html, /Nanyang Polytechnic/);

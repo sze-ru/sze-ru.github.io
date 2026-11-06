@@ -307,6 +307,6 @@ export function photoGrid(group) {
 }
 
 export function galleryStrip(preview = false, items = galleryPhotos, id = preview ? 'gallery-preview' : 'gallery-photos') {
-  const photos = items.map(photo => `<figure>${photoImage(photo, preview)}${preview ? '' : `<figcaption>${caption(photo.caption || photo.alt)}</figcaption>`}</figure>`).join('');
+  const photos = items.map(photo => `<figure>${photoImage(photo, preview)}</figure>`).join('');
   return `<div id="${id}" class="gallery-viewport${preview ? ' gallery-preview' : ''}" ${preview ? 'aria-hidden="true"' : 'tabindex="0" role="region" aria-label="Gallery photographs — scroll horizontally to explore"'}><div class="gallery-track" style="--gallery-duration:${items.length * 12}s"><div class="gallery-group">${photos}</div><div class="gallery-group" aria-hidden="true" inert>${photos}</div></div></div>`;
 }
