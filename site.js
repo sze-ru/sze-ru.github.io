@@ -53,15 +53,30 @@ if (heroContacts && closingContacts) {
   updateContacts();
 }
 
+function openCategory(modal, target) {
+  modal.showModal();
+  modal.scrollTop = 0;
+  modal.querySelector("#venue-map")?.dispatchEvent(new Event("scene-map-resize"));
+  document.documentElement.classList.add("modal-open");
+  if (target) {
+    const heading = target.querySelector('h3, h4') || target;
+    heading.tabIndex = -1;
+    heading.focus({ preventScroll: true });
+    target.scrollIntoView({ block: 'start', behavior: 'instant' });
+  }
+}
+
 document.querySelectorAll("[data-dialog]").forEach(opener => {
-    const modal = document.getElementById(opener.dataset.dialog);
-    opener.addEventListener("click", event => {
-      event.preventDefault();
-      modal.showModal();
-      modal.scrollTop = 0;
-      modal.querySelector("#venue-map")?.dispatchEvent(new Event("scene-map-resize"));
-      document.documentElement.classList.add("modal-open");
-    });
+  const modal = document.getElementById(opener.dataset.dialog);
+  if (!modal) return;
+  opener.setAttribute('aria-haspopup', 'dialog');
+  opener.addEventListener("click", event => {
+    event.preventDefault();
+    openCategory(modal, document.getElementById(opener.dataset.dialogTarget));
+  });
+});
+
+document.querySelectorAll('.category-modal').forEach(modal => {
     modal.querySelector(".modal-close").addEventListener("click", () => modal.close());
     let backdropPressed = false;
     const outside = event => {
@@ -81,6 +96,15 @@ document.querySelectorAll("[data-dialog]").forEach(opener => {
     });
     modal.querySelectorAll('a[href^="/#"]').forEach(link => link.addEventListener("click", () => modal.close()));
   });
+// Fragment links also work when opened directly or in another tab.
+const openLinkedSection = () => {
+  const target = document.getElementById(location.hash.slice(1));
+  const modal = target?.closest('.category-modal');
+  if (modal && !modal.open) openCategory(modal, target === modal ? null : target);
+};
+window.addEventListener('hashchange', openLinkedSection);
+openLinkedSection();
+
 const venueMap = document.querySelector("#venue-map");
 if (venueMap) {
   const loadMap = () => import("/venue-map.js").catch(() => {
